@@ -193,6 +193,76 @@ home-manager switch
 - Edit `home.nix` for user-specific settings
 - Add new modules in `modules/home/` for reusable user configurations
 
+## Roadmap
+
+### Development Environment Improvements
+
+- [ ] Add `devenv` support for project-specific environments
+- [ ] Create language-specific modules:
+  - [ ] `nodejs.nix` for JavaScript/TypeScript development
+  - [ ] `python.nix` for Python development
+  - [ ] Add other language modules as needed
+- [ ] Configure `nix-direnv` for automatic environment loading
+
+### Package Management
+
+- [ ] Remove legacy tools:
+  - [ ] Remove `chezmoi` (replaced by Home Manager)
+  - [ ] Remove `antigen` (replaced by native zsh plugins)
+- [ ] Add modern Nix tools:
+  - [ ] `nix-index` for command-not-found functionality
+  - [ ] `comma` for running programs without installation
+  - [ ] `lorri` for better direnv integration
+
+### Shell Environment
+
+- [ ] Add `tmux` configuration module
+- [ ] Enhance `fzf` configuration:
+  - [ ] Configure key bindings
+  - [ ] Set up preview options
+  - [ ] Integrate with Git
+- [ ] Add `atuin` for shell history management
+- [ ] Configure `direnv` hooks and logging
+
+### Security Enhancements
+
+- [ ] Add password management:
+  - [ ] Configure `1password-cli` integration
+  - [ ] Set up secrets management
+- [ ] Set up signing tools:
+  - [ ] Configure `gnupg` for commit signing
+  - [ ] Set up SSH key management
+- [ ] Add `age` for file encryption
+
+### Editor Integration
+
+- [ ] Add VSCode configuration:
+  - [ ] Sync settings through Nix
+  - [ ] Configure extensions declaratively
+  - [ ] Set up workspace settings
+- [ ] Configure other editors as needed
+
+### System Configuration Improvements
+
+- [ ] Add window management:
+  - [ ] Configure Yabai
+  - [ ] Set up keyboard shortcuts
+- [ ] System customization:
+  - [ ] Configure system-wide fonts
+  - [ ] Set default applications
+  - [ ] Configure dock and menu bar
+
+### Documentation
+
+- [ ] Add detailed documentation:
+  - [ ] Module-specific documentation
+  - [ ] Common customization examples
+  - [ ] Upgrade procedures
+- [ ] Enhance troubleshooting guides:
+  - [ ] Add solutions for common issues
+  - [ ] Document known limitations
+  - [ ] Add debugging tips
+
 ## Troubleshooting
 
 ### Common Issues
