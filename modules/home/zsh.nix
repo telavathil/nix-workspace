@@ -16,6 +16,57 @@
       share = true;
     };
 
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "z"
+        "common-aliases"
+        "history"
+        "command-not-found"
+        "docker"
+      ];
+    };
+
+    plugins = [
+      {
+        name = "zsh-completions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-completions";
+          rev = "0.34.0";
+          sha256 = "0jnvhwc1dzk7z0zqxd7c1ihmhx7j7k5guv7gvf3m3zz1b56jc3zz";
+        };
+      }
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "v0.7.0";
+          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+        };
+      }
+      {
+        name = "zsh-history-substring-search";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-history-substring-search";
+          rev = "v1.0.2";
+          sha256 = "0y8va5kc2ram38hbk2cibkk64ffrabfv1sh4xm7pjspsba9n5p1y";
+        };
+      }
+      {
+        name = "fast-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "zdharma-continuum";
+          repo = "fast-syntax-highlighting";
+          rev = "v1.55";
+          sha256 = "0h7f27gz586xxw7cc0wyiv3bx0x3qih2wwh05ad85bh2h834ar8d";
+        };
+      }
+    ];
+
     envExtra = ''
       export LSCOLORS='exfxcxdxbxegedabagacad'
       export CLICOLOR=true
@@ -49,60 +100,16 @@
       grbim = "git rebase -i main";
       gfix = "git commit -v -a --no-edit --amend && git push --force-with-lease";
       gdl = "git --no-pager diff --name-only";
-      gdlc = "git --no-pager diff --name-only --cached";
-      gusa = "git reset -q HEAD -- .";
-      gbsort = "git branch --sort=-committerdate";
       
       # Docker aliases
-      dclean = "docker system prune";
-      ddefrag = "docker run --privileged --pid=host docker/desktop-reclaim-space";
-      dcr = "docker-compose down && docker-compose up -d";
-      
-      # Other aliases
-      afk = "pmset sleepnow";
-      be = "bundle exec";
-      fdf = "find . | fzf";
-      fdfc = "find . | fzf | xargs code";
+      dps = "docker ps";
+      dpsa = "docker ps -a";
+      dimg = "docker images";
+      drm = "docker rm";
+      drmi = "docker rmi";
+      drun = "docker run";
+      dbuild = "docker build";
+      dexec = "docker exec -it";
     };
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ 
-        "git"
-        "z"
-        "docker"
-        "command-not-found"
-      ];
-    };
-
-    plugins = [
-      {
-        name = "zsh-autosuggestions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-autosuggestions";
-          rev = "v0.7.0";
-          sha256 = "KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
-        };
-      }
-      {
-        name = "zsh-history-substring-search";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-history-substring-search";
-          rev = "v1.0.2";
-          sha256 = "0y8va5kc2ram38hbk2cibkk64ffrabfv1sh4xm7pjspsba9n5p1y";
-        };
-      }
-      {
-        name = "fast-syntax-highlighting";
-        src = pkgs.fetchFromGitHub {
-          owner = "zdharma-continuum";
-          repo = "fast-syntax-highlighting";
-          rev = "v1.55";
-          sha256 = "0h7f27gz586xxw7cc0wyiv3bx0x3qih2wwh05ad85bh2h834ar8d";
-        };
-      }
-    ];
   };
 }

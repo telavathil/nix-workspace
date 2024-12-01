@@ -67,16 +67,19 @@ nix-workspace/
 ## Prerequisites
 
 1. Install Xcode Command Line Tools:
+
    ```bash
    xcode-select --install
    ```
 
 2. Install Nix:
+
    ```bash
    sh <(curl -L https://nixos.org/nix/install)
    ```
 
 3. Enable flakes:
+
    ```bash
    mkdir -p ~/.config/nix
    echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
@@ -85,18 +88,21 @@ nix-workspace/
 ## Quick Start
 
 1. Install nix-darwin:
+
    ```bash
    nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
    ./result/bin/darwin-installer
    ```
 
 2. Clone this repository:
+
    ```bash
    git clone https://github.com/telavathil/nix-workspace.git ~/.nix-workspace
    cd ~/.nix-workspace
    ```
 
 3. Build and switch to the configuration:
+
    ```bash
    nix build .#darwinConfigurations.laptop.system
    ./result/sw/bin/darwin-rebuild switch --flake .#laptop
@@ -107,6 +113,7 @@ nix-workspace/
 ### System Configuration Flow
 
 When you run `darwin-rebuild switch --flake .#laptop`:
+
 1. **flake.nix** orchestrates the build:
    - Loads required dependencies
    - Sets up system architecture
@@ -147,6 +154,7 @@ home-manager switch
 
 1. System-wide packages:
    Edit `hosts/laptop/configuration.nix`:
+
    ```nix
    environment.systemPackages = with pkgs; [
      your-package
@@ -155,6 +163,7 @@ home-manager switch
 
 2. User packages:
    Edit `home.nix`:
+
    ```nix
    home.packages = with pkgs; [
      your-package
@@ -163,6 +172,7 @@ home-manager switch
 
 3. Homebrew packages:
    Edit `configuration.nix`:
+
    ```nix
    homebrew = {
      enable = true;
@@ -174,10 +184,12 @@ home-manager switch
 ### Customization
 
 #### System Configuration
+
 - Edit `hosts/laptop/configuration.nix` for machine-specific settings and macOS defaults
 - Add new modules in `modules/system/` for reusable system configurations
 
 #### User Configuration
+
 - Edit `home.nix` for user-specific settings
 - Add new modules in `modules/home/` for reusable user configurations
 
@@ -186,6 +198,7 @@ home-manager switch
 ### Common Issues
 
 1. If flake commands fail:
+
    ```bash
    # Check if flakes are enabled
    cat ~/.config/nix/nix.conf
@@ -193,12 +206,14 @@ home-manager switch
    ```
 
 2. If Homebrew packages fail to install:
+
    ```bash
    # Ensure Homebrew is installed
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
 
 3. If system settings don't apply:
+
    ```bash
    # Rebuild and restart
    darwin-rebuild switch --flake .#laptop
@@ -206,6 +221,7 @@ home-manager switch
    ```
 
 4. If Home Manager fails:
+
    ```bash
    # Remove the generation and try again
    rm ~/.local/state/home-manager/gcroots/current-home
@@ -218,7 +234,3 @@ home-manager switch
 - API keys and credentials should be managed separately
 - Binary cache is configured for faster builds
 - Nix store is automatically optimized
-
-## License
-
-MIT
